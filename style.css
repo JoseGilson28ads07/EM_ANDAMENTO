@@ -329,3 +329,20 @@ img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita 
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
+
+/* ===== 17. DETALHES (:target, sem JavaScript) ===== */
+.detalhes{display:grid;gap:18px;margin-top:40px}
+.detalhe{scroll-margin-top:90px;padding:24px;background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow);transition:border-color var(--ease),transform var(--ease)}
+.detalhe h3{font-size:1.3rem;margin-bottom:6px}
+.detalhe .lead{color:var(--metal);margin-bottom:12px}
+.detalhe ul{display:grid;gap:8px;margin-bottom:18px;color:var(--text-secondary);font-size:.95rem}
+.detalhe b{color:var(--text-primary)}
+.detalhe:target{border-color:var(--accent);transform:translateY(-3px);animation:entrada .5s ease both}
+.cal-link{margin-top:24px}
+/* ===== 18. HISTÓRIA: timeline em grid que se reorganiza sozinha ===== */
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px;margin-bottom:32px}
+.timeline li{padding:16px;background:var(--bg-card);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:var(--radius);transition:transform var(--ease),border-color var(--ease)}
+.timeline li:hover{transform:translateY(-4px);border-color:var(--accent)}
+.timeline strong{display:block;font-size:1.4rem;color:var(--accent-text)}
+.timeline span{font-size:.9rem;color:var(--text-secondary)}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
