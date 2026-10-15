@@ -25,8 +25,8 @@ img{max-width:100%;height:auto;display:block}
   --text-primary:#f5f5f7;--text-secondary:#a8a8b3;--metal:#c9ccd1;
   --border:#2a2a32;--shadow:0 10px 30px rgba(0,0,0,.45);
   --radius:12px;--ease:.3s ease;
-  /* Fonte externa: Titillium Web (Google Fonts, carregada no <head> do HTML) */
-  --fonte:"Titillium Web","Segoe UI",Arial,sans-serif;
+  /* Fonte externa: Montserrat (Google Fonts, carregada no <head> do HTML); se falhar, usa fontes do sistema */
+  --fonte:"Montserrat","Segoe UI",Arial,sans-serif;
 }
 
 /* ===== 3. BASE ===== */
@@ -47,7 +47,7 @@ h1,h2,h3{line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
 .logo{font-size:1.5rem;font-weight:900;font-style:italic;letter-spacing:.04em;white-space:nowrap} /* nowrap: o logo nunca quebra em 2 linhas quando o menu aperta */
 .logo span{color:var(--accent)}
 .menu{display:flex;align-items:center;gap:4px}
-.menu a{position:relative;display:block;padding:8px 12px;font-size:.85rem;font-weight:600;letter-spacing:.08em;color:var(--text-secondary);transition:color var(--ease)}
+.menu a{position:relative;display:flex;align-items:center;min-height:44px;padding:8px 12px;font-size:.85rem;font-weight:600;letter-spacing:.08em;color:var(--text-secondary);transition:color var(--ease)}
 .menu a::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:var(--accent);transform:scaleX(0);transition:transform var(--ease)}
 .menu a:hover,.menu a:focus-visible{color:var(--text-primary)}
 .menu a:hover::after{transform:scaleX(1)}
@@ -82,18 +82,16 @@ body:has(#pistas:target) .menu a[href="#pistas"],body:has(#calendario:target) .m
    3) .hero::before e .hero::after (z-index:-1) reproduzem o MESMO efeito visual de .hero-bg
       (degradê escuro, brilho vermelho e listras), só que por cima da foto.
    4) O background da própria <img> só aparece se a foto falhar ao carregar (fundo reserva). */
-img.hero-bg{z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center;background:radial-gradient(circle at 75% 35%,#3a1412,var(--bg-secondary) 55%,var(--bg-primary))}
+img.hero-bg{z-index:-2;inset:0 0 0 auto;width:62%;height:100%;object-fit:cover;object-position:center;background:radial-gradient(circle at 75% 35%,#3a1412,var(--bg-secondary) 55%,var(--bg-primary))}
 img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita brilho/listras duplicados */
 .hero:has(>img.hero-bg)::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
     radial-gradient(circle,rgba(225,6,0,.3),transparent 65%) right 6% top 15%/min(360px,80vw) min(360px,80vw) no-repeat, /* brilho vermelho */
-    linear-gradient(90deg,var(--bg-primary) 18%,rgba(10,10,12,.55) 65%,rgba(10,10,12,.8)), /* escurece a esquerda: texto legível */
+    linear-gradient(90deg,var(--bg-primary) 30%,rgba(10,10,12,.35) 60%,transparent), /* escurece a esquerda (texto legível) e deixa o carro visível à direita */
     linear-gradient(0deg,var(--bg-primary),transparent 45%)} /* funde a base do hero com o fundo da página */
 .hero:has(>img.hero-bg)::after{content:"";position:absolute;right:-10%;top:0;bottom:0;width:45%;z-index:-1;pointer-events:none;transform:skewX(-12deg);background:repeating-linear-gradient(115deg,transparent 0 22px,rgba(255,255,255,.04) 22px 24px)}
-.eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent-text);font-size:.8rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase}
-.eyebrow::before{content:"";width:36px;height:2px;background:var(--accent)}
 /* overflow-wrap:normal: o título do hero mantém o comportamento original (não quebra a palavra no meio); em telas muito pequenas o tamanho da fonte diminui (ver bloco de 360px) */
-.hero h1{overflow-wrap:normal;max-width:12ch;margin:16px 0 20px;font-size:clamp(2.6rem,7vw,5.2rem);font-weight:900;font-style:italic}
+.hero h1{overflow-wrap:normal;max-width:12ch;margin:0 0 20px;font-size:clamp(2.6rem,7vw,5.2rem);font-weight:900;font-style:italic}
 .hero-texto{max-width:46ch;color:var(--metal);font-size:1.1rem}
 .hero-botoes{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:56px}
@@ -101,22 +99,24 @@ img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita 
 .stats strong{display:block;font-size:2.2rem;font-weight:900;font-style:italic;line-height:1}
 .stats span{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
 .nota{margin-top:12px;font-size:.78rem;color:var(--text-secondary)}
-.atalhos{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;padding:40px 0 0}
+/* Atalhos: 6 colunas no desktop; o primeiro (Calendário) ocupa 2 e ganha destaque */
+.atalhos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;padding:40px 0 0}
+.atalho:first-child{grid-column:span 2;border-left:4px solid var(--accent);background:linear-gradient(90deg,#2a1010,var(--bg-card))}
 .atalho{padding:16px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;transition:border-color var(--ease),transform var(--ease)}
 .atalho:hover{border-color:var(--accent);transform:translateY(-4px)}
 .atalho span{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text);font-weight:700}
 .atalho strong{font-size:1.05rem}
 
 /* ===== 6. BOTÕES ===== */
-.btn{display:inline-block;padding:13px 28px;border:2px solid transparent;border-radius:6px;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;cursor:pointer;transition:transform var(--ease),background var(--ease),border-color var(--ease),box-shadow var(--ease)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:13px 28px;border:2px solid transparent;border-radius:6px;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;cursor:pointer;transition:transform var(--ease),background var(--ease),border-color var(--ease),box-shadow var(--ease)}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-primary:hover{background:var(--accent-dark);transform:translateY(-3px);box-shadow:0 8px 20px rgba(225,6,0,.35)}
 .btn-outline{border-color:var(--metal);color:var(--text-primary)}
 .btn-outline:hover{border-color:var(--accent);background:rgba(225,6,0,.12);transform:translateY(-3px)}
-.btn-sm{padding:9px 18px;font-size:.75rem}
+.btn-sm{padding:10px 18px;font-size:.75rem}
 
 /* ===== 7. SEÇÕES ===== */
-.section{padding:90px 0;animation:entrada .8s ease both}
+.section{padding:96px 0}
 .section--alt{background:var(--bg-secondary);border-block:1px solid var(--border)}
 .section-head{margin-bottom:40px}
 .section-head h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:900;font-style:italic}
@@ -149,7 +149,7 @@ img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita 
 .card h3{font-size:1.3rem;font-weight:900}
 .card p{font-size:.95rem;color:var(--text-secondary)}
 .tag{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-text)}
-.link-seta{margin-top:auto;padding-top:10px;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:color var(--ease),letter-spacing var(--ease)}
+.link-seta{display:inline-flex;align-items:center;min-height:44px;margin-top:auto;padding-top:10px;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:color var(--ease),letter-spacing var(--ease)}
 .link-seta:hover{color:var(--accent-text);letter-spacing:.14em}
 /* Área de imagem: a foto entra pela variável --img; sem foto, aparece o degradê com o texto de data-label */
 .media{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:16/10;background:linear-gradient(135deg,#2a2a33,#0f0f13)}
@@ -178,7 +178,10 @@ img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita 
    Se usar um PNG de carro recortado (sem fundo) e não quiser cortar nada, troque para object-fit:contain. */
 .media--car{aspect-ratio:4/3}
 .media--car>img{object-fit:cover}
-.car-pilotos{color:var(--text-primary)!important;font-weight:600}
+.car-pilotos{color:var(--text-primary)!important;font-weight:700}
+/* Carros: colunas mais largas; o primeiro cartão recebe um filete vermelho no topo */
+#carros .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+#carros .card:first-child{border-top:3px solid var(--accent)}
 
 /* ===== 10. PILOTOS ===== */
 /* IMAGENS DOS PILOTOS: caixa vertical 4:5. object-position:center top ancora a foto no topo; assim,
@@ -189,6 +192,7 @@ img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita 
 .media--driver>img{object-position:center top}
 .driver-num{position:absolute;right:14px;bottom:-4px;z-index:2;font-size:6rem;font-weight:900;font-style:italic;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.4)}
 .driver h3 span{display:block;font-size:.9rem;font-weight:400;letter-spacing:.2em}
+#pilotos .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
 
 /* ===== 11. EQUIPES ===== */
 .team-logo{position:relative;overflow:hidden;height:150px;background:linear-gradient(135deg,#22222a,#121216);border-bottom:1px solid var(--border)}
@@ -196,11 +200,17 @@ img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita 
    (a imagem inteira cabe no limite, sem deformar). max-height:64px mantém os logos com altura parecida
    e max-width deixa 16px de folga de cada lado para logos muito largos não encostarem na borda do card. */
 .team-logo img{position:absolute;inset:16px;width:calc(100% - 32px);height:calc(100% - 32px);max-width:none;object-fit:contain}
-.team-logo span{font-size:2.2rem;font-weight:1500;font-style:italic;letter-spacing:.08em;color:var(--metal)}
+.team-logo span{font-size:2.2rem;font-weight:900;font-style:italic;letter-spacing:.08em;color:var(--metal)}
+/* EQUIPES: cartão horizontal (logo ao lado dos dados), diferente dos cartões verticais de pilotos.
+   Em 480px ou menos volta para coluna (ver bloco responsivo). O logo continua com object-fit:contain. */
+#equipes .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+#equipes .card{flex-direction:row}
+#equipes .team-logo{flex:0 0 38%;height:auto;min-height:190px;border-bottom:0;border-right:1px solid var(--border)}
+#equipes .card-body{min-width:0}
 
 /* ===== 12. CIRCUITOS ===== */
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
-.chips a{display:inline-block;padding:8px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:999px;font-size:.85rem;font-weight:600;transition:background var(--ease),border-color var(--ease)}
+.chips a{display:inline-flex;align-items:center;min-height:44px;padding:8px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:999px;font-size:.85rem;font-weight:600;transition:background var(--ease),border-color var(--ease)}
 .chips a:hover{background:var(--accent);border-color:var(--accent)}
 .circuit:target{border-color:var(--accent)}
 /* IMAGENS DOS CIRCUITOS: usam a caixa 16:10 padrão de .media. O cover preenche o quadro com a foto da pista
@@ -219,11 +229,11 @@ img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita 
 .tracado:target{display:grid}
 body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquanto a janela está aberta */
 .tracado-fundo{position:absolute;inset:0;background:rgba(0,0,0,.82);animation:tracado-fundo .3s ease both}
-.tracado-caixa{position:relative;width:min(100%,640px);max-height:100%;overflow:auto;padding:28px;background:var(--bg-card);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow);animation:tracado-entra .4s ease both}
-.tracado-caixa h3{margin-bottom:0}
-.tracado-fechar{position:absolute;top:10px;right:12px;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;font-size:1.1rem;color:var(--text-secondary);transition:background var(--ease),color var(--ease)}
+.tracado-caixa{position:relative;width:min(100%,640px);max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);overflow:auto;padding:28px;background:var(--bg-card);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow);animation:tracado-entra .4s ease both}
+.tracado-caixa h3{margin-bottom:0;padding-right:48px}
+.tracado-fechar{position:absolute;top:10px;right:12px;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;font-size:1.1rem;color:var(--text-secondary);transition:background var(--ease),color var(--ease)}
 .tracado-fechar:hover{background:var(--accent);color:#fff}
-.pista{display:block;width:100%;height:auto;max-height:60vh;margin:18px 0 8px;object-fit:contain;border-radius:calc(var(--radius) / 2)}
+.pista{display:block;width:100%;height:auto;max-height:min(60vh,520px);margin:18px 0 8px;object-fit:contain;border-radius:calc(var(--radius) / 2)}
 @keyframes tracado-fundo{from{opacity:0}}
 @keyframes tracado-entra{from{opacity:0;transform:translateY(20px) scale(.96)}}
 @media (prefers-reduced-motion:reduce){ /* quem pede menos movimento vê o traçado pronto, sem animar */
@@ -232,7 +242,7 @@ body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquant
 
 /* ===== 13. CALENDÁRIO ===== */
 .calendario{display:grid;gap:12px}
-.corrida{display:grid;grid-template-columns:64px 1.3fr 1.3fr 1fr 130px;gap:16px;align-items:center;padding:16px 22px;background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--border);border-radius:var(--radius);transition:transform var(--ease),background var(--ease)}
+.corrida{display:grid;grid-template-columns:64px minmax(0,1.3fr) minmax(0,1.3fr) minmax(0,1fr) 130px;gap:16px;align-items:center;padding:16px 22px;background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--border);border-radius:var(--radius);transition:transform var(--ease),background var(--ease)}
 .corrida:hover{transform:translateX(6px);background:#1e1e25}
 .corrida .num{font-size:2rem;font-weight:900;font-style:italic;color:var(--text-secondary)}
 .corrida h3{font-size:1.1rem}
@@ -264,15 +274,17 @@ body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquant
 .campo input:not(:placeholder-shown):invalid{border-color:#ff8a4d} /* aviso visual de campo inválido */
 .dica{display:block;margin-top:6px;font-size:.78rem;color:var(--text-secondary)}
 .form-card .btn{width:100%;margin-top:24px}
+.pendente{font-size:.8rem;opacity:.75} /* itens ainda sem destino real (não são links) */
 .form-links{display:grid;gap:8px;margin-top:20px;text-align:center;font-size:.9rem;color:var(--text-secondary)}
-.form-links a{font-weight:600;color:var(--accent-text)}
+.form-links a{display:block;padding:10px 4px;font-weight:600;color:var(--accent-text)}
 .form-links a:hover{text-decoration:underline}
 
 /* ===== 15. FOOTER ===== */
 .site-footer{padding:60px 0 24px;background:#050506;border-top:2px solid var(--accent-dark);font-size:.92rem;color:var(--text-secondary)}
-.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.footer-grid{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:40px}
 .footer-grid h2{margin-bottom:14px;font-size:.85rem;letter-spacing:.2em;color:var(--text-primary)}
 .footer-grid li{margin-bottom:8px}
+.footer-grid a,.footer-grid .pendente{display:inline-block;padding:6px 0}
 .footer-grid a{transition:color var(--ease)}
 .footer-grid a:hover{color:var(--accent-text)}
 .footer-grid .logo{display:block;margin-bottom:12px;color:var(--text-primary)}
@@ -296,7 +308,10 @@ body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquant
   /* Menu hambúrguer sem JavaScript: checkbox marcado (:checked) = menu aberto */
   .menu-toggle{display:block;position:absolute;width:1px;height:1px;opacity:0}
   .menu-toggle:focus-visible+.menu-btn{outline:3px solid var(--accent-text)}
-  .menu-btn{display:block;margin-left:auto;padding:2px 12px;border:2px solid var(--metal);border-radius:6px;font-size:1.4rem;cursor:pointer}
+  /* O ícone vem de ::before: ☰ fechado, ✕ aberto (checkbox :checked), sem JavaScript */
+  .menu-btn{display:grid;place-items:center;width:48px;height:44px;margin-left:auto;border:2px solid var(--metal);border-radius:6px;font-size:0;cursor:pointer}
+  .menu-btn::before{content:"☰";font-size:1.4rem}
+  .menu-toggle:checked+.menu-btn::before{content:"✕"}
   /* max-height + overflow-y:auto: se o celular estiver deitado (tela baixa), o menu aberto ganha rolagem
      própria em vez de ficar cortado embaixo. 66px = altura do header (64px + 2px de borda). */
   .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;padding:16px 20px;background:rgba(10,10,12,.97);border-bottom:2px solid var(--accent-dark);max-height:calc(100vh - 66px);max-height:calc(100dvh - 66px);overflow-y:auto}
@@ -306,19 +321,24 @@ body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquant
   .section{padding:76px 0}
   .section-head{margin-bottom:32px}
   .sobre{gap:36px}
-  /* CALENDÁRIO NO TABLET: as 5 colunas continuam, mas com menos espaço entre elas e a coluna do status
-     um pouco mais estreita (130px → 120px); sobra mais espaço para os nomes das corridas. A coluna
-     continua com largura FIXA para as linhas ficarem alinhadas entre si (com "auto" cada linha mediria
-     o próprio texto e as colunas sairiam desencontradas). */
-  .corrida{grid-template-columns:48px 1.3fr 1.3fr 1fr 120px;gap:12px;padding:14px 18px}
-  .corrida .num{font-size:1.7rem}
+  /* CALENDÁRIO NO TABLET: cada corrida vira 2 linhas (GP e circuito em cima; data e status embaixo),
+     então nenhuma coluna fica espremida e não há rolagem horizontal. minmax(0,1fr) deixa o texto quebrar. */
+  .corrida{grid-template-columns:48px minmax(0,1fr) minmax(0,1fr);gap:4px 14px;padding:14px 18px}
+  .corrida .num{grid-row:span 2;font-size:1.7rem}
+  .corrida .data{grid-column:2}
+  .status{grid-column:3;justify-self:end}
+  /* HERO NO TABLET/CELULAR: a foto sai do fundo e vira um bloco no topo, com o texto abaixo */
+  .hero{min-height:auto;padding:0 0 40px}
+  img.hero-bg{position:static;width:100%;height:auto;aspect-ratio:16/10;margin-bottom:32px}
+  .hero:has(>img.hero-bg)::before,.hero:has(>img.hero-bg)::after{display:none}
+  .atalhos{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:700px){
   .section{padding:64px 0}
-  .hero{min-height:auto;padding-top:56px}
   .sobre-cards{grid-template-columns:1fr}
   .info--largo{grid-column:auto}
-  .corrida{grid-template-columns:48px 1fr;gap:6px 14px}
+  .corrida{grid-template-columns:48px minmax(0,1fr);gap:6px 14px}
+  .corrida .num{grid-row:auto}
   .corrida>:nth-child(n+3){grid-column:2}
   .status{justify-self:start;margin-top:6px}
   .footer-grid{grid-template-columns:1fr}
@@ -330,18 +350,74 @@ body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquant
   .container{width:min(1150px,100% - 32px)}
   .section{padding:56px 0}
   .section-head{margin-bottom:28px}
-  .hero{padding:48px 0 32px}
+  .hero{padding:0 0 32px}
+  .atalhos{grid-template-columns:minmax(0,1fr)}
+  .atalho:first-child{grid-column:auto}
+  #equipes .card{flex-direction:column}
+  #equipes .team-logo{flex:none;min-height:0;height:150px;border-right:0;border-bottom:1px solid var(--border)}
   .stats{margin-top:40px}
 }
 /* CELULAR PEQUENO (até 360px, ex.: iPhone SE): evita texto cortado em títulos e formulários.
    O título do hero encolhe só abaixo de 360px (12vw), sem mudar nada nos celulares maiores. */
 @media(max-width:360px){
   .hero h1{font-size:clamp(2.2rem,12vw,2.6rem)}
-  .eyebrow{letter-spacing:.2em}
-  .logo{font-size:1.3rem}
+    .logo{font-size:1.3rem}
   .auth{padding:16px 12px}
   .form-card{padding:24px 16px}
   .form-card h1{font-size:1.6rem}
+}
+/* ===== 17. FILTROS, CLASSIFICAÇÃO E ACORDEÕES (sem JavaScript) =====
+   Rádios escondidos + labels: o navegador guarda a escolha (:checked) e o :has() mostra ou esconde itens. */
+.filtros{position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.filtros input{position:absolute;width:1px;height:1px;opacity:0}
+.filtros label{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:999px;font-size:.82rem;font-weight:700;cursor:pointer;transition:background var(--ease),border-color var(--ease)}
+.filtros label:hover{border-color:var(--accent)}
+.filtros input:checked+label{background:var(--accent);border-color:var(--accent);color:#fff}
+.filtros input:focus-visible+label{outline:3px solid var(--accent-text);outline-offset:3px}
+.caixa-destaque{display:grid;gap:4px;margin-bottom:24px;padding:20px 24px;background:linear-gradient(90deg,#2a1010,var(--bg-card));border:1px solid var(--accent-dark);border-left:4px solid var(--accent);border-radius:var(--radius)}
+.caixa-destaque strong{font-size:clamp(1.3rem,4vw,2rem);font-weight:900;font-style:italic;text-transform:uppercase;line-height:1.1}
+.caixa-destaque p{color:var(--text-secondary);font-size:.95rem}
+.cal:has(#c-real:checked) .corrida:not(.corrida--realizada){display:none}
+.cal:has(#c-prox:checked) .corrida--realizada{display:none}
+.classif{margin-top:72px}
+.classif-titulo{margin-bottom:20px;font-size:clamp(1.4rem,3vw,2rem);font-weight:900;font-style:italic}
+.classif:has(#tab-c:checked) .painel-p,.classif:has(#tab-c:checked) .filtros-eq,.classif:not(:has(#tab-c:checked)) .painel-c{display:none}
+.rank-cab,.rank li{display:grid;grid-template-columns:36px minmax(0,1fr) 44px 56px;gap:8px;align-items:center}
+.rank-cab{padding:0 14px 8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
+.rank li{margin-bottom:6px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px}
+.rank .pos{font-size:1.3rem;font-weight:900;font-style:italic;color:var(--text-secondary)}
+.rank li:nth-child(-n+3) .pos{color:var(--accent-text)}
+.rank .nome strong{display:block}
+.rank .nome small{font-size:.78rem;color:var(--text-secondary)}
+.rank .pts{font-size:1.05rem;font-weight:900}
+.rank .vit,.rank .pts,.rank-cab span:nth-child(n+3){text-align:right}
+.posicao{color:var(--text-primary)!important;font-weight:700}
+.acordeao{display:grid;gap:10px;margin-top:48px}
+.acordeao details{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius)}
+.acordeao details[open]{border-color:var(--accent-dark)}
+.acordeao summary{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:52px;padding:12px 18px;font-weight:700;cursor:pointer;list-style:none}
+.acordeao summary::-webkit-details-marker{display:none}
+.acordeao summary::after{content:"+";font-size:1.4rem;color:var(--accent-text)}
+.acordeao details[open] summary::after{content:"\2212"}
+.acordeao .conteudo{padding:0 18px 18px;font-size:.92rem;color:var(--text-secondary)}
+.acordeao .conteudo p+p{margin-top:10px}
+.classif:has(#t-mercedes:checked) .rank-p li:not([data-t="mercedes"]){display:none}
+.classif:has(#t-ferrari:checked) .rank-p li:not([data-t="ferrari"]){display:none}
+.classif:has(#t-mclaren:checked) .rank-p li:not([data-t="mclaren"]){display:none}
+.classif:has(#t-redbull:checked) .rank-p li:not([data-t="redbull"]){display:none}
+.classif:has(#t-racingbulls:checked) .rank-p li:not([data-t="racingbulls"]){display:none}
+.classif:has(#t-alpine:checked) .rank-p li:not([data-t="alpine"]){display:none}
+.classif:has(#t-haas:checked) .rank-p li:not([data-t="haas"]){display:none}
+.classif:has(#t-audi:checked) .rank-p li:not([data-t="audi"]){display:none}
+.classif:has(#t-williams:checked) .rank-p li:not([data-t="williams"]){display:none}
+.classif:has(#t-aston:checked) .rank-p li:not([data-t="aston"]){display:none}
+.classif:has(#t-cadillac:checked) .rank-p li:not([data-t="cadillac"]){display:none}
+
+/* ENTRADA NA TELA, SÓ COM CSS: animation-timeline:view() liga a animação à rolagem, então o cartão sobe e
+   aparece quando entra na área visível. Só usa transform e opacity. Navegadores sem suporte ignoram o bloco. */
+@keyframes revela{from{opacity:0;transform:translateY(28px)}}
+@supports (animation-timeline:view()){
+  .card,.info,.corrida,.atalho{animation:revela linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
 }
 /* Respeita quem prefere menos animações */
 @media(prefers-reduced-motion:reduce){

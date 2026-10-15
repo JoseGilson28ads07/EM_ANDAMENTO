@@ -6,10 +6,10 @@
   <meta name="description" content="Pit Lane F1: portal sobre Fórmula 1 com carros, pilotos, equipes, circuitos e calendário da temporada.">
   <meta name="theme-color" content="#0a0a0c">
   <title>Pit Lane F1 | Carros, pilotos, equipes e circuitos</title>
-  <!-- Fonte externa: Titillium Web (Google Fonts). É usada no CSS pela variável --fonte -->
+  <!-- Fonte externa: Montserrat (Google Fonts). É usada no CSS pela variável --fonte -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,600;0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -42,7 +42,6 @@
   <!-- Foto do hero: salve em img/circuitos/hero.jpg -->
   <img class="hero-bg" src="/../front/IMAGENS/TVYSUDS5GVD2JNG3MAEZQXG4PM.avif" alt="Carro de Fórmula 1 em alta velocidade na pista">
   <div class="container">
-    <p class="eyebrow">The world of Formula 1</p>
     <h1 id="hero-titulo">Velocidade, tecnologia e competição.</h1>
     <p class="hero-texto">Conheça carros, pilotos, equipes e as pistas mais famosas do automobilismo mundial.</p>
     <div class="hero-botoes">
@@ -56,9 +55,9 @@
       <li><strong>1950</strong><span>Ano de fundação</span></li>
       <li><strong>20+</strong><span>Grandes Prêmios por ano</span></li>
       <li><strong>11</strong><span>Equipes (grid 2026)</span></li>
-      <li><strong>22</strong><span>Pilotos (grid 2026)</span></li>
+      <li><strong>17</strong><span>Etapas disputadas até 11/10</span></li>
     </ul>
-    <p class="nota">Dados históricos e estruturais; o grid pode mudar a cada temporada.</p>
+    <p class="nota">Dados conferidos em 15/10/2026; mudam a cada corrida.</p>
   </div>
 </section>
 
@@ -89,6 +88,14 @@
       <article class="info info--largo"><h3>Pit Stop</h3><p>Troca de pneus feita por dezenas de mecânicos em pouco mais de 2 segundos.</p></article>
     </div>
   </div>
+
+  <!-- Acordeões nativos (details/summary): abrem e fecham sem JavaScript -->
+  <div class="container acordeao">
+    <details><summary>Como é um fim de semana de GP</summary><div class="conteudo"><p>Na sexta há treinos livres. No sábado, mais um treino livre e a classificação, que define o grid. No domingo acontece a corrida.</p><p>Em seis fins de semana de 2026 há também uma corrida curta no sábado, a sprint: China, Miami, Canadá, Grã-Bretanha, Países Baixos e Singapura.</p></div></details>
+    <details><summary>Como funciona a pontuação</summary><div class="conteudo"><p>Corrida: os dez primeiros pontuam, com 25, 18, 15, 12, 10, 8, 6, 4, 2 e 1 pontos.</p><p>Sprint: os oito primeiros pontuam, com 8, 7, 6, 5, 4, 3, 2 e 1 pontos.</p></div></details>
+    <details><summary>O que significam as bandeiras</summary><div class="conteudo"><p>Verde: pista livre. Amarela: perigo, sem ultrapassagens. Vermelha: corrida interrompida. Azul: deixe o carro mais rápido passar. Preta: desclassificação. Quadriculada: fim da corrida.</p></div></details>
+    <details><summary>A nova era de 2026</summary><div class="conteudo"><p>A temporada estreou novos motores com combustível 100% sustentável e a chegada de Audi e Cadillac, o que levou o grid a 11 equipes. Madri entrou no calendário e Zandvoort recebe a F1 pela última vez.</p></div></details>
+  </div>
 </section>
 
 <!-- ============ CARROS ============ -->
@@ -106,7 +113,6 @@
         <div class="card-body">
           <p class="tag">Ferrari · 2026</p><h3>SF-26</h3>
           <p class="car-pilotos">Charles Leclerc<br>Lewis Hamilton</p>
-          <p>O vermelho mais famoso do automobilismo.</p>
           <a href="#equipes" class="link-seta">Ver detalhes →</a>
         </div>
       </article>
@@ -124,7 +130,6 @@
         <div class="card-body">
           <p class="tag">Mercedes · 2026</p><h3>W17</h3>
           <p class="car-pilotos">George Russell<br>Kimi Antonelli</p>
-          <p>Equipe de longa tradição em títulos.</p>
           <a href="#equipes" class="link-seta">Ver detalhes →</a>
         </div>
       </article>
@@ -142,20 +147,83 @@
     <div class="grid">
       <article class="card driver">
         <div class="media media--driver" data-label="MV"><img src="./IMAGENS/PILOTOS/MV.jpg" alt="Foto de Max Verstappen" loading="lazy"><span class="driver-num">3</span></div>
-        <div class="card-body"><p class="tag">Red Bull</p><h3><span>Max</span>Verstappen</h3><p>Holanda</p><p>Tetracampeão mundial (2021 a 2024).</p></div>
+        <div class="card-body"><p class="tag">Red Bull</p><h3><span>Max</span>Verstappen</h3><p>Holanda</p><p>Tetracampeão mundial (2021 a 2024).</p><p class="posicao">2026: 4º lugar, 221 pontos, 2 vitórias</p></div>
       </article>
       <article class="card driver">
         <div class="media media--driver" data-label="LN"><img src="./IMAGENS/PILOTOS/Ld.jpg" alt="Foto de Lando Norris" loading="lazy"><span class="driver-num">1</span></div>
-        <div class="card-body"><p class="tag">McLaren</p><h3><span>Lando</span>Norris</h3><p>Reino Unido</p><p>Campeão mundial de 2025.</p></div>
+        <div class="card-body"><p class="tag">McLaren</p><h3><span>Lando</span>Norris</h3><p>Reino Unido</p><p>Campeão mundial de 2025.</p><p class="posicao">2026: 6º lugar, 201 pontos, 2 vitórias</p></div>
       </article>
       <article class="card driver">
         <div class="media media--driver" data-label="CL"><img src="./IMAGENS/PILOTOS/Cl.jpg" alt="Foto de Charles Leclerc" loading="lazy"><span class="driver-num">16</span></div>
-        <div class="card-body"><p class="tag">Ferrari</p><h3><span>Charles</span>Leclerc</h3><p>Mônaco</p><p>Na Ferrari desde 2019, rápido em uma volta.</p></div>
+        <div class="card-body"><p class="tag">Ferrari</p><h3><span>Charles</span>Leclerc</h3><p>Mônaco</p><p>Na Ferrari desde 2019, rápido em uma volta.</p><p class="posicao">2026: 5º lugar, 215 pontos, 1 vitória</p></div>
       </article>
       <article class="card driver">
         <div class="media media--driver" data-label="LH"><img src="./IMAGENS/PILOTOS/LW.webp" alt="Foto de Lewis Hamilton" loading="lazy"><span class="driver-num">44</span></div>
-        <div class="card-body"><p class="tag">Ferrari</p><h3><span>Lewis</span>Hamilton</h3><p>Reino Unido</p><p>Heptacampeão, estreou na Ferrari em 2025.</p></div>
+        <div class="card-body"><p class="tag">Ferrari</p><h3><span>Lewis</span>Hamilton</h3><p>Reino Unido</p><p>Heptacampeão, estreou na Ferrari em 2025.</p><p class="posicao">2026: 3º lugar, 229 pontos, 1 vitória</p></div>
       </article>
+    </div>
+
+    <!-- CLASSIFICAÇÃO 2026: abas e filtro por equipe sem JavaScript (rádios + :has no CSS) -->
+    <div class="classif" id="classificacao">
+      <h3 class="classif-titulo">Classificação 2026 após o GP de Singapura</h3>
+      <div class="caixa-destaque"><span class="tag">Líder do campeonato</span><strong>Kimi Antonelli, Mercedes</strong><p>340 pontos e 8 vitórias em 17 etapas, 102 pontos à frente de George Russell. Pode garantir o título já no GP dos Estados Unidos.</p></div>
+      <div class="filtros" role="radiogroup" aria-label="Escolher classificação">
+        <input type="radio" name="f-tab" id="tab-p" checked><label for="tab-p">Pilotos</label>
+        <input type="radio" name="f-tab" id="tab-c"><label for="tab-c">Construtores</label>
+      </div>
+      <div class="filtros filtros-eq" role="radiogroup" aria-label="Filtrar pilotos por equipe">
+        <input type="radio" name="f-eq" id="t-todas" checked><label for="t-todas">Todas</label>
+        <input type="radio" name="f-eq" id="t-mercedes"><label for="t-mercedes">Mercedes</label>
+        <input type="radio" name="f-eq" id="t-ferrari"><label for="t-ferrari">Ferrari</label>
+        <input type="radio" name="f-eq" id="t-mclaren"><label for="t-mclaren">McLaren</label>
+        <input type="radio" name="f-eq" id="t-redbull"><label for="t-redbull">Red Bull Racing</label>
+        <input type="radio" name="f-eq" id="t-racingbulls"><label for="t-racingbulls">Racing Bulls</label>
+        <input type="radio" name="f-eq" id="t-alpine"><label for="t-alpine">Alpine</label>
+        <input type="radio" name="f-eq" id="t-haas"><label for="t-haas">Haas</label>
+        <input type="radio" name="f-eq" id="t-audi"><label for="t-audi">Audi</label>
+        <input type="radio" name="f-eq" id="t-williams"><label for="t-williams">Williams</label>
+        <input type="radio" name="f-eq" id="t-aston"><label for="t-aston">Aston Martin</label>
+        <input type="radio" name="f-eq" id="t-cadillac"><label for="t-cadillac">Cadillac</label>
+      </div>
+      <div class="painel-p"><p class="rank-cab" aria-hidden="true"><span>Pos</span><span>Piloto</span><span>Vit</span><span>Pts</span></p><ol class="rank rank-p">
+<li data-t="mercedes"><span class="pos">1</span><span class="nome"><strong>Andrea Kimi Antonelli</strong><small>Itália, Mercedes</small></span><span class="vit">8</span><span class="pts">340</span></li>
+<li data-t="mercedes"><span class="pos">2</span><span class="nome"><strong>George Russell</strong><small>Reino Unido, Mercedes</small></span><span class="vit">3</span><span class="pts">238</span></li>
+<li data-t="ferrari"><span class="pos">3</span><span class="nome"><strong>Lewis Hamilton</strong><small>Reino Unido, Ferrari</small></span><span class="vit">1</span><span class="pts">229</span></li>
+<li data-t="redbull"><span class="pos">4</span><span class="nome"><strong>Max Verstappen</strong><small>Holanda, Red Bull Racing</small></span><span class="vit">2</span><span class="pts">221</span></li>
+<li data-t="ferrari"><span class="pos">5</span><span class="nome"><strong>Charles Leclerc</strong><small>Mônaco, Ferrari</small></span><span class="vit">1</span><span class="pts">215</span></li>
+<li data-t="mclaren"><span class="pos">6</span><span class="nome"><strong>Lando Norris</strong><small>Reino Unido, McLaren</small></span><span class="vit">2</span><span class="pts">201</span></li>
+<li data-t="mclaren"><span class="pos">7</span><span class="nome"><strong>Oscar Piastri</strong><small>Austrália, McLaren</small></span><span class="vit">0</span><span class="pts">138</span></li>
+<li data-t="redbull"><span class="pos">8</span><span class="nome"><strong>Isack Hadjar</strong><small>França, Red Bull Racing</small></span><span class="vit">0</span><span class="pts">97</span></li>
+<li data-t="racingbulls"><span class="pos">9</span><span class="nome"><strong>Liam Lawson</strong><small>Nova Zelândia, Racing Bulls</small></span><span class="vit">0</span><span class="pts">75</span></li>
+<li data-t="alpine"><span class="pos">10</span><span class="nome"><strong>Pierre Gasly</strong><small>França, Alpine</small></span><span class="vit">0</span><span class="pts">41</span></li>
+<li data-t="racingbulls"><span class="pos">11</span><span class="nome"><strong>Arvid Lindblad</strong><small>Reino Unido, Racing Bulls</small></span><span class="vit">0</span><span class="pts">38</span></li>
+<li data-t="alpine"><span class="pos">12</span><span class="nome"><strong>Franco Colapinto</strong><small>Argentina, Alpine</small></span><span class="vit">0</span><span class="pts">27</span></li>
+<li data-t="haas"><span class="pos">13</span><span class="nome"><strong>Oliver Bearman</strong><small>Reino Unido, Haas</small></span><span class="vit">0</span><span class="pts">23</span></li>
+<li data-t="audi"><span class="pos">14</span><span class="nome"><strong>Nico Hulkenberg</strong><small>Alemanha, Audi</small></span><span class="vit">0</span><span class="pts">13</span></li>
+<li data-t="audi"><span class="pos">15</span><span class="nome"><strong>Gabriel Bortoleto</strong><small>Brasil, Audi</small></span><span class="vit">0</span><span class="pts">10</span></li>
+<li data-t="haas"><span class="pos">16</span><span class="nome"><strong>Esteban Ocon</strong><small>França, Haas</small></span><span class="vit">0</span><span class="pts">7</span></li>
+<li data-t="aston"><span class="pos">17</span><span class="nome"><strong>Fernando Alonso</strong><small>Espanha, Aston Martin</small></span><span class="vit">0</span><span class="pts">7</span></li>
+<li data-t="williams"><span class="pos">18</span><span class="nome"><strong>Carlos Sainz</strong><small>Espanha, Williams</small></span><span class="vit">0</span><span class="pts">7</span></li>
+<li data-t="williams"><span class="pos">19</span><span class="nome"><strong>Alex Albon</strong><small>Tailândia, Williams</small></span><span class="vit">0</span><span class="pts">5</span></li>
+<li data-t="racingbulls"><span class="pos">20</span><span class="nome"><strong>Yuki Tsunoda</strong><small>Japão, Racing Bulls</small></span><span class="vit">0</span><span class="pts">1</span></li>
+<li data-t="aston"><span class="pos">21</span><span class="nome"><strong>Lance Stroll</strong><small>Canadá, Aston Martin</small></span><span class="vit">0</span><span class="pts">0</span></li>
+<li data-t="cadillac"><span class="pos">22</span><span class="nome"><strong>Valtteri Bottas</strong><small>Finlândia, Cadillac</small></span><span class="vit">0</span><span class="pts">0</span></li>
+<li data-t="cadillac"><span class="pos">23</span><span class="nome"><strong>Sergio Perez</strong><small>México, Cadillac</small></span><span class="vit">0</span><span class="pts">0</span></li>
+</ol></div>
+      <div class="painel-c"><p class="rank-cab" aria-hidden="true"><span>Pos</span><span>Equipe</span><span>Vit</span><span>Pts</span></p><ol class="rank">
+<li><span class="pos">1</span><span class="nome"><strong>Mercedes</strong></span><span class="vit">11</span><span class="pts">578</span></li>
+<li><span class="pos">2</span><span class="nome"><strong>Ferrari</strong></span><span class="vit">2</span><span class="pts">444</span></li>
+<li><span class="pos">3</span><span class="nome"><strong>McLaren</strong></span><span class="vit">2</span><span class="pts">339</span></li>
+<li><span class="pos">4</span><span class="nome"><strong>Red Bull Racing</strong></span><span class="vit">2</span><span class="pts">332</span></li>
+<li><span class="pos">5</span><span class="nome"><strong>Racing Bulls</strong></span><span class="vit">0</span><span class="pts">100</span></li>
+<li><span class="pos">6</span><span class="nome"><strong>Alpine</strong></span><span class="vit">0</span><span class="pts">68</span></li>
+<li><span class="pos">7</span><span class="nome"><strong>Haas</strong></span><span class="vit">0</span><span class="pts">30</span></li>
+<li><span class="pos">8</span><span class="nome"><strong>Audi</strong></span><span class="vit">0</span><span class="pts">23</span></li>
+<li><span class="pos">9</span><span class="nome"><strong>Williams</strong></span><span class="vit">0</span><span class="pts">12</span></li>
+<li><span class="pos">10</span><span class="nome"><strong>Aston Martin</strong></span><span class="vit">0</span><span class="pts">7</span></li>
+<li><span class="pos">11</span><span class="nome"><strong>Cadillac</strong></span><span class="vit">0</span><span class="pts">0</span></li>
+</ol></div>
+      <p class="nota">Fonte: Crash.net, atualizado em 11/10/2026. Os números mudam a cada corrida; confirme em formula1.com.</p>
     </div>
   </div>
 </section>
@@ -165,7 +233,7 @@
   <div class="container">
     <div class="section-head">
       <h2 id="equipes-titulo">Equipes</h2>
-      <p>Para atualizar a temporada, edite pilotos e carro de cada equipe.</p>
+      <p>Pilotos, carro e sede de cada equipe.</p>
     </div>
     <div class="grid">
       <!-- Logos das equipes: salve em img/equipes/ -->
@@ -207,28 +275,28 @@
     <div class="grid">
       <article class="card circuit" id="interlagos">
         <div class="media" data-label="INTERLAGOS"><img src="./IMAGENS/CIRCUITO/INTERLAGOS.jpg" alt="Autódromo de Interlagos" loading="lazy"></div>
-        <div class="card-body"><p class="tag">🇧🇷 Brasil · São Paulo</p><h3>Interlagos</h3>
+        <div class="card-body"><p class="tag">Brasil · São Paulo</p><h3>Interlagos</h3>
           <div class="ficha"><p><strong>4,309</strong><span>km</span></p><p><strong>15</strong><span>curvas</span></p></div>
           <p>Traçado técnico e tradicional, com subidas, descidas e sentido anti-horário.</p>
           <a href="#tracado-interlagos" class="btn btn-outline btn-sm">Ver circuito</a></div>
       </article>
       <article class="card circuit" id="monaco">
         <div class="media" data-label="MÔNACO"><img src="./IMAGENS/CIRCUITO/MONACO.jpg" alt="Circuito de Mônaco" loading="lazy"></div>
-        <div class="card-body"><p class="tag">🇲🇨 Mônaco · Monte Carlo</p><h3>Mônaco</h3>
+        <div class="card-body"><p class="tag">Mônaco · Monte Carlo</p><h3>Mônaco</h3>
           <div class="ficha"><p><strong>3,337</strong><span>km</span></p><p><strong>19</strong><span>curvas</span></p></div>
           <p>Pista de rua estreita, onde a classificação vale quase tanto quanto a corrida.</p>
           <a href="#tracado-monaco" class="btn btn-outline btn-sm">Ver circuito</a></div>
       </article>
       <article class="card circuit" id="monza">
         <div class="media" data-label="MONZA"><img src="./IMAGENS/CIRCUITO/MONZA.jpg" alt="Autódromo de Monza" loading="lazy"></div>
-        <div class="card-body"><p class="tag">🇮🇹 Itália · Monza</p><h3>Monza</h3>
+        <div class="card-body"><p class="tag">Itália · Monza</p><h3>Monza</h3>
           <div class="ficha"><p><strong>5,793</strong><span>km</span></p><p><strong>11</strong><span>curvas</span></p></div>
           <p>O "Templo da Velocidade": longas retas e poucas curvas.</p>
           <a href="#tracado-monza" class="btn btn-outline btn-sm">Ver circuito</a></div>
       </article>
       <article class="card circuit" id="suzuka">
         <div class="media" data-label="SUZUKA"><img src="./IMAGENS/CIRCUITO/SUZUKA.jpg" alt="Circuito de Suzuka" loading="lazy"></div>
-        <div class="card-body"><p class="tag">🇯🇵 Japão · Suzuka</p><h3>Suzuka</h3>
+        <div class="card-body"><p class="tag">Japão · Suzuka</p><h3>Suzuka</h3>
           <div class="ficha"><p><strong>5,807</strong><span>km</span></p><p><strong>18</strong><span>curvas</span></p></div>
           <p>Traçado em formato de 8, um dos favoritos dos pilotos.</p>
           <a href="#tracado-suzuka" class="btn btn-outline btn-sm">Ver circuito</a></div>
@@ -241,7 +309,7 @@
       <a href="#interlagos" class="tracado-fundo" aria-label="Fechar traçado"></a>
       <div class="tracado-caixa">
         <a href="#interlagos" class="tracado-fechar" aria-label="Fechar traçado">✕</a>
-        <p class="tag">🇧🇷 Brasil · São Paulo</p>
+        <p class="tag">Brasil · São Paulo</p>
         <h3 id="tracado-interlagos-titulo">Traçado de Interlagos</h3>
         <img class="pista" src="./IMAGENS/TRAÇADO/TRAÇADO_INTERLAGOS.png" alt="Traçado do circuito de Interlagos" loading="lazy">
         <p class="nota">Imagem ilustrativa do traçado, sem escala.</p>
@@ -251,7 +319,7 @@
       <a href="#monaco" class="tracado-fundo" aria-label="Fechar traçado"></a>
       <div class="tracado-caixa">
         <a href="#monaco" class="tracado-fechar" aria-label="Fechar traçado">✕</a>
-        <p class="tag">🇲🇨 Mônaco · Monte Carlo</p>
+        <p class="tag">Mônaco · Monte Carlo</p>
         <h3 id="tracado-monaco-titulo">Traçado de Mônaco</h3>
         <img class="pista" src="./IMAGENS/TRAÇADO/TRAÇADO_MONACO.jpg" alt="Traçado do circuito de Mônaco" loading="lazy">
         <p class="nota">Imagem ilustrativa do traçado, sem escala.</p>
@@ -261,7 +329,7 @@
       <a href="#monza" class="tracado-fundo" aria-label="Fechar traçado"></a>
       <div class="tracado-caixa">
         <a href="#monza" class="tracado-fechar" aria-label="Fechar traçado">✕</a>
-        <p class="tag">🇮🇹 Itália · Monza</p>
+        <p class="tag">Itália · Monza</p>
         <h3 id="tracado-monza-titulo">Traçado de Monza</h3>
         <img class="pista" src="./IMAGENS/TRAÇADO/TRAÇADO_MONZA.png" alt="Traçado do circuito de Monza" loading="lazy">
         <p class="nota">Imagem ilustrativa do traçado, sem escala.</p>
@@ -271,7 +339,7 @@
       <a href="#suzuka" class="tracado-fundo" aria-label="Fechar traçado"></a>
       <div class="tracado-caixa">
         <a href="#suzuka" class="tracado-fechar" aria-label="Fechar traçado">✕</a>
-        <p class="tag">🇯🇵 Japão · Suzuka</p>
+        <p class="tag">Japão · Suzuka</p>
         <h3 id="tracado-suzuka-titulo">Traçado de Suzuka</h3>
         <img class="pista" src="./IMAGENS/TRAÇADO/TRAÇADO_SUZUKA.webp" alt="Traçado do circuito de Suzuka" loading="lazy">
         <p class="nota">Imagem ilustrativa do traçado, sem escala.</p>
@@ -286,26 +354,112 @@
   <div class="container">
     <div class="section-head">
       <h2 id="calendario-titulo">Calendário da Temporada</h2>
-      <p>Para cada etapa, copie um &lt;li&gt; e altere os dados. Datas e status abaixo são exemplos.</p>
+      <p>23 etapas em 2026, de Melbourne a Abu Dhabi. Confirme mudanças em formula1.com.</p>
     </div>
-    <ol class="calendario">
+    <div class="cal">
+      <div class="caixa-destaque"><span class="tag">Próxima corrida</span><strong>GP dos Estados Unidos</strong><p>Circuit of the Americas, Austin, 25 de outubro de 2026.</p></div>
+      <!-- Filtro sem JavaScript: o rádio marcado (:checked) faz o CSS esconder as corridas que não combinam -->
+      <div class="filtros" role="radiogroup" aria-label="Filtrar corridas">
+        <input type="radio" name="f-cal" id="c-todas" checked><label for="c-todas">Todas (23)</label>
+        <input type="radio" name="f-cal" id="c-real"><label for="c-real">Realizadas (17)</label>
+        <input type="radio" name="f-cal" id="c-prox"><label for="c-prox">Restantes (6)</label>
+      </div>
+      <ol class="calendario">
       <li class="corrida corrida--realizada"><span class="num">01</span>
         <div><h3>GP da Austrália</h3><p>Austrália</p></div>
         <div><h3>Albert Park</h3><p>Melbourne</p></div>
-        <span class="data">DATA A CONFIRMAR</span><span class="status">Realizada</span></li>
+        <span class="data">08 mar</span><span class="status">Realizada</span></li>
       <li class="corrida corrida--realizada"><span class="num">02</span>
+        <div><h3>GP da China</h3><p>China</p></div>
+        <div><h3>Shanghai International Circuit</h3><p>Xangai</p></div>
+        <span class="data">15 mar, com sprint</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">03</span>
         <div><h3>GP do Japão</h3><p>Japão</p></div>
         <div><h3>Suzuka</h3><p>Suzuka</p></div>
-        <span class="data">DATA A CONFIRMAR</span><span class="status">Realizada</span></li>
-      <li class="corrida corrida--proxima"><span class="num">03</span>
+        <span class="data">29 mar</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">04</span>
+        <div><h3>GP de Miami</h3><p>Estados Unidos</p></div>
+        <div><h3>Miami International Autodrome</h3><p>Miami</p></div>
+        <span class="data">03 mai, com sprint</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">05</span>
+        <div><h3>GP do Canadá</h3><p>Canadá</p></div>
+        <div><h3>Circuit Gilles-Villeneuve</h3><p>Montreal</p></div>
+        <span class="data">24 mai, com sprint</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">06</span>
+        <div><h3>GP de Mônaco</h3><p>Mônaco</p></div>
+        <div><h3>Circuit de Monaco</h3><p>Monte Carlo</p></div>
+        <span class="data">07 jun</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">07</span>
+        <div><h3>GP de Barcelona-Catalunha</h3><p>Espanha</p></div>
+        <div><h3>Circuit de Barcelona-Catalunya</h3><p>Barcelona</p></div>
+        <span class="data">14 jun</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">08</span>
+        <div><h3>GP da Áustria</h3><p>Áustria</p></div>
+        <div><h3>Red Bull Ring</h3><p>Spielberg</p></div>
+        <span class="data">28 jun</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">09</span>
+        <div><h3>GP da Grã-Bretanha</h3><p>Reino Unido</p></div>
+        <div><h3>Silverstone</h3><p>Silverstone</p></div>
+        <span class="data">05 jul, com sprint</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">10</span>
+        <div><h3>GP da Bélgica</h3><p>Bélgica</p></div>
+        <div><h3>Spa-Francorchamps</h3><p>Spa</p></div>
+        <span class="data">19 jul</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">11</span>
+        <div><h3>GP da Hungria</h3><p>Hungria</p></div>
+        <div><h3>Hungaroring</h3><p>Budapeste</p></div>
+        <span class="data">26 jul</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">12</span>
+        <div><h3>GP dos Países Baixos</h3><p>Países Baixos</p></div>
+        <div><h3>Circuit Zandvoort</h3><p>Zandvoort</p></div>
+        <span class="data">23 ago, com sprint</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">13</span>
         <div><h3>GP da Itália</h3><p>Itália</p></div>
         <div><h3>Monza</h3><p>Monza</p></div>
-        <span class="data">DATA A CONFIRMAR</span><span class="status">Próxima</span></li>
-      <li class="corrida corrida--breve"><span class="num">04</span>
+        <span class="data">06 set</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">14</span>
+        <div><h3>GP de Madri</h3><p>Espanha</p></div>
+        <div><h3>Madring</h3><p>Madri</p></div>
+        <span class="data">13 set</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">15</span>
+        <div><h3>GP do Azerbaijão</h3><p>Azerbaijão</p></div>
+        <div><h3>Baku City Circuit</h3><p>Baku</p></div>
+        <span class="data">26 set</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">16</span>
+        <div><h3>GP do Bahrein (disputado em Sepang)</h3><p>Malásia</p></div>
+        <div><h3>Sepang International Circuit</h3><p>Sepang</p></div>
+        <span class="data">04 out</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--realizada"><span class="num">17</span>
+        <div><h3>GP de Singapura</h3><p>Singapura</p></div>
+        <div><h3>Marina Bay</h3><p>Singapura</p></div>
+        <span class="data">11 out, com sprint</span><span class="status">Realizada</span></li>
+      <li class="corrida corrida--proxima"><span class="num">18</span>
+        <div><h3>GP dos Estados Unidos</h3><p>Estados Unidos</p></div>
+        <div><h3>Circuit of the Americas</h3><p>Austin</p></div>
+        <span class="data">25 out</span><span class="status">Próxima</span></li>
+      <li class="corrida corrida--breve"><span class="num">19</span>
+        <div><h3>GP da Cidade do México</h3><p>México</p></div>
+        <div><h3>Autódromo Hermanos Rodríguez</h3><p>Cidade do México</p></div>
+        <span class="data">01 nov</span><span class="status">Em breve</span></li>
+      <li class="corrida corrida--breve"><span class="num">20</span>
         <div><h3>GP do Brasil</h3><p>Brasil</p></div>
         <div><h3>Interlagos</h3><p>São Paulo</p></div>
-        <span class="data">DATA A CONFIRMAR</span><span class="status">Em breve</span></li>
-    </ol>
+        <span class="data">08 nov</span><span class="status">Em breve</span></li>
+      <li class="corrida corrida--breve"><span class="num">21</span>
+        <div><h3>GP de Las Vegas</h3><p>Estados Unidos</p></div>
+        <div><h3>Las Vegas Strip Circuit</h3><p>Las Vegas</p></div>
+        <span class="data">22 nov</span><span class="status">Em breve</span></li>
+      <li class="corrida corrida--breve"><span class="num">22</span>
+        <div><h3>GP do Catar</h3><p>Catar</p></div>
+        <div><h3>Lusail International Circuit</h3><p>Lusail</p></div>
+        <span class="data">29 nov (a confirmar)</span><span class="status">Em breve</span></li>
+      <li class="corrida corrida--breve"><span class="num">23</span>
+        <div><h3>GP de Abu Dhabi</h3><p>Emirados Árabes Unidos</p></div>
+        <div><h3>Yas Marina</h3><p>Abu Dhabi</p></div>
+        <span class="data">06 dez (a confirmar)</span><span class="status">Em breve</span></li>
+      </ol>
+      <p class="nota">Bahrein e Arábia Saudita (abril) foram cancelados; o GP do Bahrein foi disputado em Sepang. Catar e Abu Dhabi seguem sujeitos a confirmação. Dados conferidos em 15/10/2026.</p>
+    </div>
   </div>
 </section>
 </main>
@@ -317,12 +471,12 @@
     <nav aria-label="Navegação do rodapé"><h2>Navegação</h2>
       <ul><li><a href="#inicio">Início</a></li><li><a href="#f1">F1</a></li><li><a href="#carros">Carros</a></li><li><a href="#pilotos">Pilotos</a></li><li><a href="#equipes">Equipes</a></li><li><a href="#pistas">Circuitos</a></li></ul></nav>
     <div><h2>Redes</h2>
-      <!-- Links fictícios: substitua se o projeto tiver perfis reais -->
-      <ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">X</a></li></ul></div>
+      <!-- Redes pendentes: troque cada span por <a href="URL real"> quando existirem perfis -->
+      <ul><li><span class="pendente">Instagram (perfil a definir)</span></li><li><span class="pendente">YouTube (perfil a definir)</span></li><li><span class="pendente">X (perfil a definir)</span></li></ul></div>
     <div><h2>Informações</h2>
       <ul><li>Projeto acadêmico</li><li>ADS</li><li>Web Front End</li><li>Desenvolvido por: [seu nome]</li></ul></div>
   </div>
-  <div class="container"><p class="footer-fim">© 2026 Pit Lane F1 — Projeto acadêmico.</p></div>
+  <div class="container"><p class="footer-fim">© 2026 Pit Lane F1. Projeto acadêmico.</p></div>
 </footer>
 
 </body>
