@@ -1,39 +1,95 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Tela de login do Pit Lane F1 (demonstração de interface).">
   <title>Login | Pit Lane F1</title>
+  <!-- Fontes externas (Google Fonts): Montserrat no texto e Oswald nos títulos.
+       No CSS elas são usadas pelas variáveis de fonte do :root -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,700;1,900&amp;family=Oswald:wght@500;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="auth">
-    <!-- Sem JavaScript e sem backend: os campos não têm "name", então nenhum dado é enviado.
-         O botão só leva para a próxima página. "required" e type="email" validam o preenchimento. -->
-    <form class="form-card" action="index.html">
-      <a href="index.html" class="logo" aria-label="Pit Lane F1, voltar ao site">PIT LANE <span>F1</span></a>
-      <h1>Entrar</h1>
-      <p class="form-sub">Acesse sua conta para acompanhar a temporada.</p>
-      <p class="aviso" role="note">Demonstração de interface: não existe autenticação real.</p>
-      <div class="campo">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" placeholder="voce@email.com" autocomplete="email" required>
-      </div>
-      <div class="campo">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" placeholder="Sua senha" autocomplete="current-password" required>
-      </div>
-      <button class="btn btn-primary" type="submit">Entrar</button>
-      <p class="form-links">
-        <span class="pendente">Recuperação de senha indisponível nesta demonstração</span>
-        <span>Não tem conta? <a href="cadastro.html">Criar conta</a></span>
-        <a href="index.html">← Voltar ao site</a>
-      </p>
-    </form>
-  </main>
+
+<!-- Ícones SVG inline (sprite). Uso: <svg class="icone" aria-hidden="true"><use href="#i-nome"></use></svg> -->
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-usuario" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+  <symbol id="i-bandeira" viewBox="0 0 24 24"><path d="M5 3v18"/><rect x="6" y="4" width="12" height="9"/><path d="M6 4h3v3H6zM12 4h3v3h-3zM9 7h3v3H9zM15 7h3v3h-3zM6 10h3v3H6zM12 10h3v3h-3z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container header-bar">
+    <a href="index.html" class="logo" aria-label="Pit Lane F1, ir para o início">PIT LANE <span>F1</span></a>
+    <!-- Menu mobile sem JavaScript: o checkbox escondido guarda "aberto/fechado" e o CSS usa :checked.
+         O texto do label é só para leitores de tela; o ícone ☰/✕ vem do CSS. -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+    <label for="menu-toggle" class="menu-btn"><span class="sr-only">Abrir menu</span></label>
+    <nav aria-label="Menu principal">
+      <ul class="menu">
+        <li><a href="index.html#inicio">Início</a></li>
+        <li><a href="index.html#f1">F1</a></li>
+        <li><a href="index.html#carros">Carros</a></li>
+        <li><a href="index.html#pilotos">Pilotos</a></li>
+        <li><a href="index.html#equipes">Equipes</a></li>
+        <li><a href="index.html#pistas">Pistas</a></li>
+        <li><a href="index.html#calendario">Calendário</a></li>
+        <li><a href="admin.html">Admin</a></li>
+        <li><a href="login.html" class="btn-login"><svg class="icone" aria-hidden="true"><use href="#i-usuario"></use></svg>Login</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="auth">
+  <!-- Esta página não usa JavaScript nem backend: os campos não têm "name", então nenhum dado é enviado.
+       O botão só leva para a próxima página. "required" e type="email" validam o preenchimento. -->
+  <form class="form-card" action="index.html">
+    <h1>Entrar</h1>
+    <p class="form-sub">Acesse sua conta para acompanhar a temporada.</p>
+    <p class="aviso" role="note">Demonstração de interface: não existe autenticação real.</p>
+    <div class="campo">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" placeholder="voce@email.com" autocomplete="email" required>
+    </div>
+    <div class="campo">
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" placeholder="Sua senha" autocomplete="current-password" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Entrar</button>
+    <p class="form-links">
+      <span class="pendente">Recuperação de senha indisponível nesta demonstração</span>
+      <span>Não tem conta? <a href="cadastro.html">Criar conta</a></span>
+      <a href="index.html">← Voltar ao site</a>
+    </p>
+  </form>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+<div class="container footer-grid">
+<div><a href="index.html" class="logo">PIT LANE <span>F1</span></a><p>Portal informativo sobre a Fórmula 1: carros, pilotos, equipes e circuitos.</p></div>
+<nav aria-label="Navegação do rodapé"><h2>Navegação</h2>
+<ul><li><a href="index.html#inicio">Início</a></li><li><a href="index.html#f1">F1</a></li><li><a href="index.html#carros">Carros</a></li><li><a href="index.html#pilotos">Pilotos</a></li><li><a href="index.html#equipes">Equipes</a></li><li><a href="index.html#pistas">Circuitos</a></li><li><a href="admin.html">Admin</a></li></ul></nav>
+<div><h2>Redes</h2>
+<!-- Redes: troque cada href="#" pelo link do perfil quando ele existir -->
+<ul>
+<li><a href="#" class="rede" aria-label="Instagram do Pit Lane F1"><svg class="icone" aria-hidden="true"><use href="#i-instagram"></use></svg>Instagram</a></li>
+<li><a href="#" class="rede" aria-label="YouTube do Pit Lane F1"><svg class="icone" aria-hidden="true"><use href="#i-youtube"></use></svg>YouTube</a></li>
+<li><a href="#" class="rede" aria-label="X do Pit Lane F1"><svg class="icone" aria-hidden="true"><use href="#i-x"></use></svg>X</a></li>
+</ul></div>
+<div><h2>Informações</h2>
+<!-- TROQUE: NOME_1, NOME_2 e NOME_3 pelos nomes da equipe e URL_DO_CURRICULO pelo link do currículo -->
+<ul><li>Projeto acadêmico</li><li>ADS</li><li>Web Front End</li><li>Desenvolvido por: NOME_1, NOME_2, NOME_3</li><li><a href="URL_DO_CURRICULO" target="_blank" rel="noopener">Currículo</a></li></ul></div>
+</div>
+<div class="container"><p class="footer-fim">© 2026 Pit Lane F1. Projeto acadêmico.</p></div>
+</footer>
+
 </body>
 </html>

@@ -3,6 +3,7 @@
    Blocos: 1 Reset · 2 Variáveis · 3 Base · 4 Header · 5 Hero · 6 Botões
    7 Seções · 8 Cards · 9 Carros · 10 Pilotos · 11 Equipes · 12 Circuitos
    13 Calendário · 14 Formulários · 15 Footer · 16 Responsivo
+   17 Filtros e acordeões · 18 Ícones, utilitários e página Admin
    ===================================================== */
 
 /* ===== 1. RESET ===== */
@@ -27,6 +28,8 @@ img{max-width:100%;height:auto;display:block}
   --radius:12px;--ease:.3s ease;
   /* Fonte externa: Montserrat (Google Fonts, carregada no <head> do HTML); se falhar, usa fontes do sistema */
   --fonte:"Montserrat","Segoe UI",Arial,sans-serif;
+  /* Segunda fonte externa: Oswald (Google Fonts) só nos títulos h1, h2 e h3; se falhar, usa a Montserrat */
+  --fonte-titulo:"Oswald","Montserrat","Segoe UI",Arial,sans-serif;
 }
 
 /* ===== 3. BASE ===== */
@@ -38,7 +41,7 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:var(--fonte);background:var(--bg-primary);color:var(--text-primary);line-height:1.6;overflow-wrap:break-word;overflow-x:clip}
 .container{width:min(1150px,100% - 40px);margin-inline:auto}
 :focus-visible{outline:3px solid var(--accent-text);outline-offset:3px}
-h1,h2,h3{line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
+h1,h2,h3{font-family:var(--fonte-titulo);line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
 @keyframes entrada{from{opacity:0;transform:translateY(24px)}}
 
 /* ===== 4. HEADER ===== */
@@ -51,7 +54,7 @@ h1,h2,h3{line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
 .menu a::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:var(--accent);transform:scaleX(0);transition:transform var(--ease)}
 .menu a:hover,.menu a:focus-visible{color:var(--text-primary)}
 .menu a:hover::after{transform:scaleX(1)}
-.menu .btn-login{margin-left:10px;background:var(--accent);color:#fff;border-radius:6px}
+.menu .btn-login{margin-left:10px;gap:8px;justify-content:center;background:var(--accent);color:#fff;border-radius:6px}
 .menu .btn-login::after{display:none}
 .menu .btn-login:hover{background:var(--accent-dark)}
 /* Link ativo: a seção clicada vira :target e o body:has() destaca o link correspondente (sem JavaScript) */
@@ -119,8 +122,8 @@ img.hero-bg::before,img.hero-bg::after{display:none} /* se a foto falhar, evita 
 .section{padding:96px 0}
 .section--alt{background:var(--bg-secondary);border-block:1px solid var(--border)}
 .section-head{margin-bottom:40px}
-.section-head h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:900;font-style:italic}
-.section-head h2::after{content:"";display:block;width:64px;height:4px;margin-top:12px;background:var(--accent)}
+.section-head h1,.section-head h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:900;font-style:italic}
+.section-head h1::after,.section-head h2::after{content:"";display:block;width:64px;height:4px;margin-top:12px;background:var(--accent)}
 .section-head p{max-width:60ch;margin-top:12px;color:var(--text-secondary)}
 /* GRID RESPONSIVO DOS CARDS (carros, pilotos, equipes, circuitos):
    repeat(auto-fit, minmax(min(100%,250px), 1fr)) → cada coluna tem no mínimo 250px e divide o espaço
@@ -260,7 +263,7 @@ body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquant
      do navegador, evitando rolagem desnecessária;
    • .form-card usa width:min(100%,430px): até 430px no desktop e 100% do espaço disponível no celular;
    • os inputs têm width:100% e box-sizing:border-box (reset), então nunca passam do cartão. */
-.auth{display:grid;grid-template-columns:minmax(0,1fr);place-items:center;min-height:100vh;min-height:100dvh;padding:24px;
+.auth{display:grid;grid-template-columns:minmax(0,1fr);place-items:center;min-height:calc(100vh - 66px);min-height:calc(100dvh - 66px);padding:24px;
   background:radial-gradient(circle at 80% 10%,rgba(225,6,0,.25),transparent 45%),repeating-linear-gradient(115deg,transparent 0 40px,rgba(255,255,255,.03) 40px 42px),var(--bg-primary)}
 .form-card{width:min(100%,430px);padding:36px 32px;background:rgba(24,24,29,.94);border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow);animation:entrada .7s ease both}
 .form-card h1{margin-top:18px;font-size:1.9rem;font-weight:900;font-style:italic}
@@ -413,14 +416,54 @@ body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquant
 .classif:has(#t-aston:checked) .rank-p li:not([data-t="aston"]){display:none}
 .classif:has(#t-cadillac:checked) .rank-p li:not([data-t="cadillac"]){display:none}
 
-/* ENTRADA NA TELA, SÓ COM CSS: animation-timeline:view() liga a animação à rolagem, então o cartão sobe e
-   aparece quando entra na área visível. Só usa transform e opacity. Navegadores sem suporte ignoram o bloco. */
+/* ENTRADA NA TELA, SÓ COM CSS: os cartões sobem e aparecem quando a página carrega.
+   Usa apenas @keyframes e "animation" simples (sem ligar a animação à rolagem), que o validador CSS da W3C reconhece.
+   "backwards" aplica o estado inicial antes de começar e solta a propriedade no fim,
+   assim o efeito de hover (transform) continua funcionando depois da animação. */
 @keyframes revela{from{opacity:0;transform:translateY(28px)}}
-@supports (animation-timeline:view()){
-  .card,.info,.corrida,.atalho{animation:revela linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
-}
+.card,.info,.corrida,.atalho{animation:revela .6s ease backwards}
 /* Respeita quem prefere menos animações */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
+}
+
+/* ===== 18. ÍCONES, UTILITÁRIOS E PÁGINA ADMIN ===== */
+/* Utilitários: texto só para leitores de tela e atributo hidden sempre vencendo o display dos componentes */
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+[hidden]{display:none!important}
+/* Ícones SVG inline: o sprite fica no topo do <body> (sem ocupar espaço) e cada ícone usa <use href="#i-nome">.
+   currentColor faz o ícone herdar a cor do texto ao redor. */
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.icone{flex:none;width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.atalho{position:relative;padding-right:48px}
+.atalho .icone-atalho{position:absolute;top:16px;right:16px;width:22px;height:22px;color:var(--accent-text)}
+.footer-grid .rede{display:inline-flex;align-items:center;gap:8px}
+/* Link da página atual no menu (Admin) */
+.menu a[aria-current="page"]{color:var(--text-primary);box-shadow:inset 0 -2px 0 var(--accent)}
+
+/* Página Admin: mesmo cartão escuro dos formulários, com campos lado a lado no desktop */
+.admin-painel{padding:28px;background:var(--bg-card);border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow)}
+.admin-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px}
+.admin-form .campo{margin-top:0}
+.admin-botoes{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:12px}
+.admin-msg{grid-column:1 / -1;min-height:1.4em;font-size:.9rem;color:var(--metal)}
+.admin-msg--erro{color:var(--accent-text);font-weight:700}
+.admin-ferramentas{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;margin-top:32px}
+.admin-ferramentas .campo{flex:1 1 260px;margin-top:0}
+.lista-usuarios{display:grid;gap:12px;margin-top:20px}
+.usuario{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius)}
+.usuario-info{display:grid;gap:2px;min-width:0}
+.usuario-data{font-size:.75rem;letter-spacing:.08em;color:var(--text-secondary)}
+.usuario-nome{font-size:1.1rem;font-weight:700}
+.usuario-email{font-size:.9rem;color:var(--metal);overflow-wrap:anywhere}
+.admin-vazio{margin-top:20px;padding:20px;background:var(--bg-card);border:1px dashed var(--border);border-radius:var(--radius);color:var(--text-secondary);text-align:center}
+@media(max-width:700px){
+  .admin-form{grid-template-columns:minmax(0,1fr)}
+  .admin-painel{padding:20px}
+}
+@media(max-width:480px){
+  .usuario{grid-template-columns:minmax(0,1fr)}
+  .usuario .btn{justify-self:start}
+  .admin-botoes .btn,.admin-ferramentas .btn{width:100%}
 }
