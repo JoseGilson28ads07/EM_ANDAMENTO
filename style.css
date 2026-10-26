@@ -436,7 +436,9 @@ body:has(.tracado:target){overflow:hidden} /* trava a rolagem da página enquant
    currentColor faz o ícone herdar a cor do texto ao redor. */
 .sprite{position:absolute;width:0;height:0;overflow:hidden}
 .icone{flex:none;width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.atalho{position:relative;padding-right:48px}
+/* O espaço do ícone é reservado só no rótulo (span); o título (strong) usa a largura toda e não quebra no meio da palavra */
+.atalho{position:relative}
+.atalho>span{padding-right:28px}
 .atalho .icone-atalho{position:absolute;top:16px;right:16px;width:22px;height:22px;color:var(--accent-text)}
 .footer-grid .rede{display:inline-flex;align-items:center;gap:8px}
 /* Link da página atual no menu (Admin) */
